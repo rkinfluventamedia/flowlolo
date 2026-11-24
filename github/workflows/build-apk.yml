@@ -9,8 +9,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Unzip source
-        run: unzip -q FlowLoLo-app-source.zip
+      - name: Checkout (repo files uthao)
+        uses: actions/checkout@v4
+
+      - name: Unzip source (zip kahin bhi ho, dhundh lega)
+        run: |
+          ZIP=$(find . -name "FlowLoLo-app-source.zip" | head -n 1)
+          echo "Zip mila: $ZIP"
+          unzip -q "$ZIP"
+          ls flowlolo-app | head -n 5
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
